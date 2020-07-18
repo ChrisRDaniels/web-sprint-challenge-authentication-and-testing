@@ -1,5 +1,5 @@
 const db = require('../database/dbConfig');
-const Users = require('./users-model');
+const Users = require('../users/users-model');
 const request = require('supertest');
 const server = require('../api/server');
 
@@ -53,10 +53,10 @@ describe('register / login', () => {
 
   // Get Jokes Testing
 
-  it('should return 400 if not logged in', async () => {
+  it('should return 401 if not logged in', async () => {
     const get = await request(server).get('/api/jokes');
 
-    expect(get.status).toBe(400);
+    expect(get.status).toBe(401);
   });
 
   it('should return 200 if logged in', async () => {
